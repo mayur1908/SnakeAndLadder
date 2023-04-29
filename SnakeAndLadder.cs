@@ -14,7 +14,7 @@ namespace SnakeAndLadder
             Console.WriteLine("Welcome to Snake and Ladder game!");
 
             while (position < 100)
-            {
+            { // continue playing until position is 100 or more
                 Console.WriteLine("You are currently at position " + position);
                 Console.WriteLine("Press any key to roll the dice");
                 Console.ReadKey();
@@ -25,39 +25,74 @@ namespace SnakeAndLadder
 
                 Console.WriteLine("You rolled a " + diceRoll);
 
-                // update position based on dice roll and option
-                int option = random.Next(0, 3); // 0 for no play, 1 for ladder, 2 for snake
-                switch (option)
+                // update position based on dice roll
+                int newPosition = position + diceRoll;
+
+                // check if new position exceeds 100
+                if (newPosition > 100)
                 {
-                    case 0:
-                        Console.WriteLine("No play! You stay at the same position");
-                        break;
-                    case 1:
-                        int newPosition = position + diceRoll;
-                        if (newPosition > 100)
-                        {
-                            Console.WriteLine("Oops! You cannot move ahead from position " + position);
+                    Console.WriteLine("You need " + (100 - position) + " to reach the finish line. Try again.");
+                }
+                else
+                {
+                    // check for snakes and ladders
+                    switch (newPosition)
+                    {
+                        case 14:
+                            Console.WriteLine("Oh no! You landed on a snake! Slide down to position 4");
+                            newPosition = 4;
                             break;
-                        }
-                        Console.WriteLine("Congratulations! You found a ladder! Climb up to position " + newPosition);
-                        position = newPosition;
-                        break;
-                    case 2:
-                         newPosition = position - diceRoll;
-                        if (newPosition < 0)
-                        {
-                            Console.WriteLine("Oops! You cannot go below position 0");
-                            position = 0;
+                        case 19:
+                            Console.WriteLine("Congratulations! You found a ladder! Climb up to position 38");
+                            newPosition = 38;
                             break;
-                        }
-                        Console.WriteLine("Oh no! You landed on a snake! Slide down to position " + newPosition);
+                        case 31:
+                            Console.WriteLine("Oh no! You landed on a snake! Slide down to position 9");
+                            newPosition = 9;
+                            break;
+                        case 42:
+                            Console.WriteLine("Congratulations! You found a ladder! Climb up to position 63");
+                            newPosition = 63;
+                            break;
+                        case 50:
+                            Console.WriteLine("Oh no! You landed on a snake! Slide down to position 20");
+                            newPosition = 20;
+                            break;
+                        case 67:
+                            Console.WriteLine("Congratulations! You found a ladder! Climb up to position 86");
+                            newPosition = 86;
+                            break;
+                        case 74:
+                            Console.WriteLine("Oh no! You landed on a snake! Slide down to position 53");
+                            newPosition = 53;
+                            break;
+                        case 78:
+                            Console.WriteLine("Congratulations! You found a ladder! Climb up to position 98");
+                            newPosition = 98;
+                            break;
+                        case 91:
+                            Console.WriteLine("Oh no! You landed on a snake! Slide down to position 61");
+                            newPosition = 61;
+                            break;
+                        case 100:
+                            Console.WriteLine("Congratulations! You reached the finish line!");
+                            break;
+                        default:
+                            Console.WriteLine("You are now at position " + newPosition);
+                            break;
+                    }
+
+                    // update position if new position is valid
+                    if (newPosition <= 100)
+                    {
                         position = newPosition;
-                        break;
+                    }
                 }
             }
 
-            Console.WriteLine("Congratulations! You reached the finish line!");
+            Console.WriteLine("Game over!");
             Console.ReadKey();
+
         }
     }
 }
