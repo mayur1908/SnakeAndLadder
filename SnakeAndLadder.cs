@@ -11,63 +11,70 @@ namespace SnakeAndLadder
         public static void SnakeLadderSimulator()
         {
             int position = 0;
-            int diceRollCount = 0; // variable to keep track of the number of times the dice was rolled
-            Console.WriteLine("Welcome to Snake and Ladder game!");
-
             while (position < 100)
-            {
+            { // continue playing until position is 100 or more
                 Console.WriteLine("You are currently at position " + position);
                 Console.WriteLine("Press any key to roll the dice");
                 Console.ReadKey();
 
+                // generate a random number between 1 and 6 for the dice roll
                 Random random = new Random();
                 int diceRoll = random.Next(1, 7);
-                diceRollCount++; // increment the dice roll count
 
                 Console.WriteLine("You rolled a " + diceRoll);
 
-                int option = random.Next(0, 3);
-                switch (option)
+                // update position based on dice roll
+                position += diceRoll;
+
+                // check for snakes and ladders
+                switch (position)
                 {
-                    case 0:
-                        Console.WriteLine("No play, stay at the same position");
+                    case 14:
+                        Console.WriteLine("Oh no! You landed on a snake! Slide down to position 4");
+                        position = 4;
                         break;
-                    case 1:
-                        Console.WriteLine("Congratulations! You found a ladder!");
-                        position += diceRoll;
-                        if (position > 100)
-                        {
-                            position -= diceRoll; // player stays in the same position
-                        }
-                        else if (position == 100)
-                        {
-                            Console.WriteLine("Congratulations! You reached the finish line!");
-                            break;
-                        }
-                        else
-                        {
-                            Console.WriteLine("Move ahead by " + diceRoll + " positions");
-                        }
+                    case 19:
+                        Console.WriteLine("Congratulations! You found a ladder! Climb up to position 38");
+                        position = 38;
                         break;
-                    case 2:
-                        Console.WriteLine("Oh no! You landed on a snake!");
-                        position -= diceRoll;
-                        if (position < 0)
-                        {
-                            position = 0; // player restarts from 0
-                        }
-                        Console.WriteLine("Move behind by " + diceRoll + " positions");
+                    case 31:
+                        Console.WriteLine("Oh no! You landed on a snake! Slide down to position 9");
+                        position = 9;
+                        break;
+                    case 42:
+                        Console.WriteLine("Congratulations! You found a ladder! Climb up to position 63");
+                        position = 63;
+                        break;
+                    case 50:
+                        Console.WriteLine("Oh no! You landed on a snake! Slide down to position 20");
+                        position = 20;
+                        break;
+                    case 67:
+                        Console.WriteLine("Congratulations! You found a ladder! Climb up to position 86");
+                        position = 86;
+                        break;
+                    case 74:
+                        Console.WriteLine("Oh no! You landed on a snake! Slide down to position 53");
+                        position = 53;
+                        break;
+                    case 78:
+                        Console.WriteLine("Congratulations! You found a ladder! Climb up to position 98");
+                        position = 98;
+                        break;
+                    case 91:
+                        Console.WriteLine("Oh no! You landed on a snake! Slide down to position 61");
+                        position = 61;
+                        break;
+                    case 100:
+                        Console.WriteLine("Congratulations! You reached the finish line!");
+                        break;
+                    default:
+                        Console.WriteLine("You are now at position " + position);
                         break;
                 }
-
-                Console.WriteLine("You are now at position " + position);
             }
-
             Console.WriteLine("Game over!");
-            Console.WriteLine("Number of times the dice was rolled to win the game: " + diceRollCount);
             Console.ReadKey();
-
-
         }
     }
 }
