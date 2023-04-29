@@ -18,6 +18,14 @@ namespace SnakeAndLadder
                 Console.WriteLine("Press any key to roll the dice");
                 Console.ReadKey();
 
+                // generate a random number between 1 and 6 for the dice roll
+                Random random = new Random();
+                int diceRoll = random.Next(1, 7);
+
+                Console.WriteLine("You rolled a " + diceRoll);
+
+                // update position based on dice roll
+                position += diceRoll;
         }
     }
 }
